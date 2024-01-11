@@ -20,9 +20,12 @@ type SearchProps = {
 
 export default function MovAtivos() {
   const [codigo, setCodigo] = useState('')
-  const [status, setStatus] = useState('')
-  const [centroCusto, setCentroCusto] = useState('')
   const [centroCustos, setCentroCustos] = useState<ICostCenter[]>([])
+  const [listStatus, setListStatus] = useState<string[]>([
+    'Incluido',
+    'Alterado',
+    'Baixado',
+  ])
   const [search, setSeach] = useState<IActives>()
   const {
     handleSubmit,
@@ -44,8 +47,8 @@ export default function MovAtivos() {
   }
 
   async function handleUpdate(id: number) {
-    const st = document.getElementById('status')
-    const cc = document.getElementById('centrocusto')
+    const st = document.getElementById('status') as HTMLInputElement
+    const cc = document.getElementById('centrocusto') as HTMLInputElement
     const data = {
       id,
       status: st.value,
@@ -80,6 +83,7 @@ export default function MovAtivos() {
           autoFocus={true}
           type="text"
           id="codigoAtivo"
+          placeholder="0000001"
           {...register('codigoAtivo')}
         />
         <button type="submit">&#128269;</button>
@@ -139,9 +143,21 @@ export default function MovAtivos() {
                   className="p-2 w-full md:w-96 rounded border-[1px] border-gray-300 bg-gray-200"
                 >
                   <option value="">Selecione..</option>
-                  <option value="Incluido">Incluido</option>
-                  <option value="Alterado">Alterado</option>
-                  <option value="Baixado">Baixado</option>
+                  {listStatus.map((ls) => {
+                    if (search?.status === ls) {
+                      return (
+                        <option selected key={ls} value={ls}>
+                          {ls}
+                        </option>
+                      )
+                    } else {
+                      return (
+                        <option key={ls} value={ls}>
+                          {ls}
+                        </option>
+                      )
+                    }
+                  })}
                 </select>
               </td>
             </tr>
