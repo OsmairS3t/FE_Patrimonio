@@ -1,6 +1,7 @@
 'use client'
 
-import { Menu2 } from './menu2'
+// import { Menu2 } from './menu2'
+import { Menu } from './menu'
 
 export default function Header() {
   // const [isOpen, setIsOpen] = useState(false)
@@ -17,7 +18,7 @@ export default function Header() {
         Controle de Patrimônio
       </h1>
 
-      <Menu2 />
+      <Menu />
     </div>
   )
 }

@@ -20,13 +20,13 @@ const activeSchema = z.object({
   codmarca: z.string(),
 })
 
-type AdicionarProps = {
+interface Props {
   setIsClose: (isOpen: boolean) => void
 }
 
-export function Adicionar({ setIsClose }: AdicionarProps) {
-  const [subGrupo, setSubGrupo] = useState(0)
-  const [cCusto, setCCusto] = useState(0)
+export function Adicionar({ setIsClose }: Props) {
+  // const [subGrupo, setSubGrupo] = useState(0)
+  // const [cCusto, setCCusto] = useState(0)
   const [subGrupos, setSubGrupos] = useState<ISubGroups[]>([])
   const [centroCusto, setCentroCusto] = useState<ICostCenter[]>([])
   const [marcas, setMarcas] = useState<IMark[]>([])
@@ -40,13 +40,13 @@ export function Adicionar({ setIsClose }: AdicionarProps) {
   })
 
   function handleClose() {
-    setIsClose(false)
-    reset()
+    // setIsClose(false)
+    // reset()
   }
 
   async function handleSubmitActive(data: IActive) {
-    setSubGrupo(data.codsubgrupo)
-    setCCusto(data.codcentrocusto)
+    // setSubGrupo(data.codsubgrupo)
+    // setCCusto(data.codcentrocusto)
     const dataFormatted = {
       codigo: data.codigo,
       status: data.status,
@@ -153,7 +153,7 @@ export function Adicionar({ setIsClose }: AdicionarProps) {
           </div>
 
           <div className="flex flex-col gap-2 w-96 md:full">
-            <label htmlFor="marca">Marca:</label>
+            <label htmlFor="codmarca">Marca:</label>
             <select
               id="codmarca"
               className="p-2 w-full md:w-96 rounded border-[1px] border-gray-300 bg-gray-200"

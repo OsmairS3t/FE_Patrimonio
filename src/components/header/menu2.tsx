@@ -17,6 +17,7 @@ export function Menu2() {
     <>
       <div className="print:hidden flex flex-row justify-center my-2 sm:hidden">
         <button
+          id="btn_menu"
           onClick={toggleMenu}
           className="text-2xl w-10 hover:text-white rounded-lg transition-all ease-in duration-300"
         >

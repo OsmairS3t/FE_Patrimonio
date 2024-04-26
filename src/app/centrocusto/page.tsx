@@ -4,6 +4,7 @@ import { useState } from 'react'
 import Modal from 'react-modal'
 import { Adicionar } from './adicionar'
 import ListCentroCusto from './listCostCenter'
+import { customStylesModal } from '@/utils/styles'
 
 export default function Home() {
   const [isOpen, setIsOpen] = useState(false)
@@ -26,7 +27,7 @@ export default function Home() {
 
       <ListCentroCusto />
 
-      <Modal ariaHideApp={false} isOpen={isOpen}>
+      <Modal style={customStylesModal} ariaHideApp={false} isOpen={isOpen}>
         <Adicionar setIsClose={setIsOpen} />
       </Modal>
     </div>

@@ -25,10 +25,20 @@ export default function ListSubGroups() {
   return (
     <table className="w-full border-[-1] border-gray-600">
       <thead>
-        <th className="w-52 text-left">Grupo</th>
-        <th className="w-32 text-left">Cod.Sub</th>
-        <th className="w-max text-left">Subgrupo</th>
-        <th className="w-32 text-left">Opção</th>
+        <tr>
+          <th scope="col" className="w-52 text-left">
+            Grupo
+          </th>
+          <th scope="col" className="w-32 text-left">
+            Cod.Sub
+          </th>
+          <th scope="col" className="w-max text-left">
+            Subgrupo
+          </th>
+          {/* <th scope="col" className="w-32 text-left">
+            Opção
+          </th> */}
+        </tr>
       </thead>
       <tbody>
         {subGrupos.map((subgrupo) => (
@@ -36,14 +46,14 @@ export default function ListSubGroups() {
             key={subgrupo.id}
             className="odd:bg-gray-100 h-9 hover:bg-gray-200"
           >
-            <td>{subgrupo.grupo}</td>
-            <td>{subgrupo.id}</td>
-            <td>{subgrupo.descricao}</td>
-            <td>
+            <td scope="row">{subgrupo.grupo}</td>
+            <td scope="row">{subgrupo.id}</td>
+            <td scope="row">{subgrupo.descricao}</td>
+            {/* <td scope="row">
               <button onClick={() => handleDeleteSubGrupo(subgrupo.id)}>
                 Excluir
               </button>
-            </td>
+            </td> */}
           </tr>
         ))}
       </tbody>

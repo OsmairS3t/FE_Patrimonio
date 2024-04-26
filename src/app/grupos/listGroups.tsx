@@ -1,4 +1,5 @@
 'use client'
+// https://github.com/gregnb/mui-datatables
 
 import { useEffect, useState } from 'react'
 import { api } from '@/lib/axios'
@@ -25,18 +26,26 @@ export default function ListGroups() {
   return (
     <table className="w-full border-[-1] border-gray-600">
       <thead>
-        <th className="w-10 text-left">Cod.</th>
-        <th className="w-max text-left">Grupo</th>
-        <th className="w-32 text-left">Opção</th>
+        <tr>
+          <th scope="col" className="w-10 text-left">
+            Cod.
+          </th>
+          <th scope="col" className="w-max text-left">
+            Grupo
+          </th>
+          {/* <th scope="col" className="w-32 text-left">
+            Opção
+          </th> */}
+        </tr>
       </thead>
       <tbody>
         {grupos.map((grupo) => (
           <tr key={grupo.id} className="odd:bg-gray-100 h-9 hover:bg-gray-200">
-            <td>{grupo.id}</td>
-            <td>{grupo.descricao}</td>
-            <td>
+            <td scope="row">{grupo.id}</td>
+            <td scope="row">{grupo.descricao}</td>
+            {/* <td scope="row">
               <button onClick={() => handleDelete(grupo.id)}>Excluir</button>
-            </td>
+            </td> */}
           </tr>
         ))}
       </tbody>

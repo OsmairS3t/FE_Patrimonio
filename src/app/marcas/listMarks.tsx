@@ -25,18 +25,26 @@ export default function ListMarks() {
   return (
     <table className="w-full border-[-1] border-gray-600">
       <thead>
-        <th className="w-10 text-left">Cod.</th>
-        <th className="w-max text-left">Marca</th>
-        <th className="w-32 text-left">Opção</th>
+        <tr>
+          <th scope="col" className="w-10 text-left">
+            Cod.
+          </th>
+          <th scope="col" className="w-max text-left">
+            Marca
+          </th>
+          {/* <th scope="col" className="w-32 text-left">
+            Opção
+          </th> */}
+        </tr>
       </thead>
       <tbody>
         {Marcas.map((marca) => (
           <tr key={marca.id} className="odd:bg-gray-100 h-9 hover:bg-gray-200">
-            <td>{marca.id}</td>
-            <td>{marca.descricao}</td>
-            <td>
+            <td scope="row">{marca.id}</td>
+            <td scope="row">{marca.descricao}</td>
+            {/* <td scope="row">
               <button onClick={() => handleDelete(marca.id)}>Excluir</button>
-            </td>
+            </td> */}
           </tr>
         ))}
       </tbody>

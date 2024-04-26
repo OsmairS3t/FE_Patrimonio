@@ -4,6 +4,7 @@ import ListGroups from './listGroups'
 import { Adicionar } from './adicionar'
 import Modal from 'react-modal'
 import { useState } from 'react'
+import { customStylesModal } from '@/utils/styles'
 
 export default function Home() {
   const [isOpen, setIsOpen] = useState(false)
@@ -25,7 +26,7 @@ export default function Home() {
       </div>
       <ListGroups />
 
-      <Modal ariaHideApp={false} isOpen={isOpen}>
+      <Modal style={customStylesModal} ariaHideApp={false} isOpen={isOpen}>
         <Adicionar setIsClose={setIsOpen} />
       </Modal>
     </div>

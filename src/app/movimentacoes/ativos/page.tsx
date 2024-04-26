@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect, useState } from 'react'
+import { FiSearch } from 'react-icons/fi'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
@@ -55,6 +56,7 @@ export default function MovAtivos() {
       codcentrocusto: Number(cc.value),
     }
     await api.put('ativos', data)
+    // alert('Ativo atualizado com sucesso!' + JSON.stringify(data))
     alert('Ativo atualizado com sucesso!')
   }
 
@@ -79,14 +81,16 @@ export default function MovAtivos() {
       >
         <label htmlFor="codigoAtivo">Código do Ativo:</label>
         <input
-          className="border-[1px] border-gray-300 pr-2 rounded p-2 bg-gray-100"
+          className="border-[1px] w-28 border-gray-300 pr-2 rounded p-2 bg-gray-100"
           autoFocus={true}
           type="text"
           id="codigoAtivo"
           placeholder="0000001"
           {...register('codigoAtivo')}
         />
-        <button type="submit">&#128269;</button>
+        <button type="submit">
+          <FiSearch name="search" size={32} />
+        </button>
         {errors.codigoAtivo && (
           <span className="text-red-500 font-light italic">
             {errors.codigoAtivo.message}
@@ -133,7 +137,17 @@ export default function MovAtivos() {
             </tr>
             <tr>
               <td className="pr-2 font-semibold">DESCRIÇÃO:</td>
-              <td className="pl-2">{search?.descricao}</td>
+              <td className="pl-2">
+                {search?.descricao}
+                {/* <br />
+                <input
+                  className="p-2 w-full md:w-96 border-[1px] border-gray-300 pr-2 rounded bg-gray-100"
+                  type="text"
+                  id="descricao"
+                  placeholder="Descrição"
+                  {...register('descricao')}
+                /> */}
+              </td>
             </tr>
             <tr>
               <td className="pr-2 font-semibold">STATUS:</td>

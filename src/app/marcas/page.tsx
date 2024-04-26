@@ -4,6 +4,7 @@ import { useState } from 'react'
 import Modal from 'react-modal'
 import ListMarks from './listMarks'
 import { Adicionar } from './adicionar'
+import { customStylesModal } from '@/utils/styles'
 
 export default function Marcas() {
   const [isOpen, setIsOpen] = useState(false)
@@ -25,7 +26,7 @@ export default function Marcas() {
       </div>
       <ListMarks />
 
-      <Modal ariaHideApp={false} isOpen={isOpen}>
+      <Modal style={customStylesModal} ariaHideApp={false} isOpen={isOpen}>
         <Adicionar setIsClose={setIsOpen} />
       </Modal>
     </div>

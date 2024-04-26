@@ -25,18 +25,26 @@ export default function ListCentroCusto() {
   return (
     <table className="w-full border-[-1] border-gray-600">
       <thead>
-        <th className="w-10 text-left">Cod.</th>
-        <th className="w-max text-left">Centro custo</th>
-        <th className="w-32 text-left">Opção</th>
+        <tr>
+          <th scope="col" className="w-10 text-left">
+            Cod.
+          </th>
+          <th scope="col" className="w-max text-left">
+            Centro custo
+          </th>
+          {/* <th scope="col" className="w-32 text-left">
+            Opção
+          </th> */}
+        </tr>
       </thead>
       <tbody>
         {centroCusto.map((cc) => (
           <tr key={cc.id} className="odd:bg-gray-100 h-9 hover:bg-gray-200">
-            <td>{cc.id}</td>
-            <td>{cc.descricao}</td>
-            <td>
+            <td scope="row">{cc.id}</td>
+            <td scope="row">{cc.descricao}</td>
+            {/* <td scope="row">
               <button onClick={() => handleDelete(cc.id)}>Excluir</button>
-            </td>
+            </td> */}
           </tr>
         ))}
       </tbody>
