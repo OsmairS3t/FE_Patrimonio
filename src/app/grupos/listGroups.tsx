@@ -13,11 +13,11 @@ export default function ListGroups() {
     setGrupos(response.data)
   }
 
-  async function handleDelete(id: number) {
-    await api.delete(`grupos/${id}`)
-    alert(`Excluido com sucesso!`)
-    loadGrupos()
-  }
+  // async function handleDelete(id: number) {
+  //   await api.delete(`grupos/${id}`)
+  //   alert(`Excluido com sucesso!`)
+  //   loadGrupos()
+  // }
 
   useEffect(() => {
     loadGrupos()

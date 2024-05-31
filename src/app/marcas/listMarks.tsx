@@ -12,11 +12,11 @@ export default function ListMarks() {
     setMarcas(response.data)
   }
 
-  async function handleDelete(id: number) {
-    await api.delete(`marcas/${id}`)
-    alert(`Excluido com sucesso!`)
-    loadMarcas()
-  }
+  // async function handleDelete(id: number) {
+  //   await api.delete(`marcas/${id}`)
+  //   alert(`Excluido com sucesso!`)
+  //   loadMarcas()
+  // }
 
   useEffect(() => {
     loadMarcas()

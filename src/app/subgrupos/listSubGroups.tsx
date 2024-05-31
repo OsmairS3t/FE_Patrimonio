@@ -12,11 +12,11 @@ export default function ListSubGroups() {
     setSubGrupos(response.data)
   }
 
-  async function handleDeleteSubGrupo(id: number) {
-    await api.delete(`subgrupos/${id}`)
-    alert(`Excluido com sucesso!`)
-    loadSubGrupos()
-  }
+  // async function handleDeleteSubGrupo(id: number) {
+  //   await api.delete(`subgrupos/${id}`)
+  //   alert(`Excluido com sucesso!`)
+  //   loadSubGrupos()
+  // }
 
   useEffect(() => {
     loadSubGrupos()

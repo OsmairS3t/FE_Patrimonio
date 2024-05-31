@@ -17,9 +17,9 @@ export default function ListActives({ pcentrocusto, psubgrupo }: Props) {
     return objMark.descricao
   }
 
-  function handleDelete(id: number) {
-    console.log(id)
-  }
+  // function handleDelete(id: number) {
+  //   console.log(id)
+  // }
 
   async function loadAtivos(codcentrocusto: string, codsubgrupo: string) {
     const response = await api.get(

@@ -46,15 +46,18 @@ export default function Active() {
 
   return (
     <div>
-      <div className="flex md:flex-col justify-start mb-4 gap-2">
+      <div className="print:hidden flex md:flex-col justify-start mb-4 gap-2">
         <h1 className="font-bold text-xl">ATIVOS:</h1>
         <div className="sm:flex-col">
-          <label htmlFor="codcentrocusto" className="font-semibold text-lg">
+          <label
+            htmlFor="codcentrocusto"
+            className="font-semibold text-lg print:hidden"
+          >
             Centro de Custo:
           </label>
           <select
             id="codcentrocusto"
-            className="ml-2 mr-8 border-[1px] border-gray-200 p-2 w-52 rounded"
+            className="ml-2 mr-8 border-[1px] border-gray-200 p-2 w-52 rounded print:hidden"
             onChange={handleTurnCentroCusto}
           >
             <option value={0}>Todos</option>
@@ -65,12 +68,15 @@ export default function Active() {
             ))}
           </select>
 
-          <label htmlFor="codsubgrupo" className="font-semibold text-lg">
+          <label
+            htmlFor="codsubgrupo"
+            className="font-semibold text-lg print:hidden"
+          >
             Sub-Grupo:
           </label>
           <select
             id="codsubgrupo"
-            className="ml-2 mr-8 border-[1px] border-gray-100 p-2 w-52 rounded"
+            className="ml-2 mr-8 border-[1px] border-gray-100 p-2 w-52 rounded print:hidden"
             onChange={handleTurnSubGrupo}
           >
             <option value={0}>Todos</option>

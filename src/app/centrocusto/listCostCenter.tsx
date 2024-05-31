@@ -12,11 +12,11 @@ export default function ListCentroCusto() {
     setCentroCustos(response.data)
   }
 
-  async function handleDelete(id: number) {
-    await api.delete(`centrocusto/${id}`)
-    alert(`Excluido com sucesso!`)
-    loadCentroCustos()
-  }
+  // async function handleDelete(id: number) {
+  //   await api.delete(`centrocusto/${id}`)
+  //   alert(`Excluido com sucesso!`)
+  //   loadCentroCustos()
+  // }
 
   useEffect(() => {
     loadCentroCustos()
