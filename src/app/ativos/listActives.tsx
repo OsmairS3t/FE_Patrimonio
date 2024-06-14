@@ -100,7 +100,7 @@ export default function ListActives({ pcentrocusto, psubgrupo }: Props) {
                 {ativo.descricao}
               </td>
               <td scope="row" className="text-left">
-                {handleMark(ativo.codmarca.toString())}
+                {ativo.marca}
               </td>
               <td scope="row" className="text-left">
                 {ativo.status}

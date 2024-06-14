@@ -46,4 +46,13 @@ export interface IActives {
   subgrupo: string
   centrocusto: string
   codmarca: number
+  marca: string
+}
+
+export interface INote {
+  id: number
+  costcenter: number
+  centrocusto: string
+  active: string
+  obs: string
 }

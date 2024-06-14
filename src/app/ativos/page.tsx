@@ -15,10 +15,10 @@ export default function Active() {
   const [subGrupos, setSubGrupos] = useState<ISubGroups[]>([])
   const [codCentroCusto, setCodCentroCusto] = useState('0')
   const [codSubGrupo, setCodSubGrupo] = useState('0')
-  const [isOpen, setIsOpen] = useState(false)
+  const [isOpenActive, setIsOpenActive] = useState(false)
 
   function handleAddNew() {
-    setIsOpen(true)
+    setIsOpenActive(true)
   }
 
   function handleTurnCentroCusto(event: any) {
@@ -39,6 +39,10 @@ export default function Active() {
     setSubGrupos(response.data)
   }
 
+  function closeModal() {
+    setIsOpenActive(false)
+  }
+
   useEffect(() => {
     listCentroCusto()
     listSubGrupos()
@@ -46,9 +50,9 @@ export default function Active() {
 
   return (
     <div>
-      <div className="print:hidden flex md:flex-col justify-start mb-4 gap-2">
-        <h1 className="font-bold text-xl">ATIVOS:</h1>
-        <div className="sm:flex-col">
+      <h1 className="font-bold text-xl">ATIVOS:</h1>
+      <div className="print:hidden flex flex-col lg:flex-row justify-start mb-4 gap-2">
+        <div className="flex flex-col lg:flex-row gap-2">
           <label
             htmlFor="codcentrocusto"
             className="font-semibold text-lg print:hidden"
@@ -57,7 +61,7 @@ export default function Active() {
           </label>
           <select
             id="codcentrocusto"
-            className="ml-2 mr-8 border-[1px] border-gray-200 p-2 w-52 rounded print:hidden"
+            className="border-[1px] border-gray-200 p-2 w-full lg:w-52 rounded print:hidden"
             onChange={handleTurnCentroCusto}
           >
             <option value={0}>Todos</option>
@@ -76,7 +80,7 @@ export default function Active() {
           </label>
           <select
             id="codsubgrupo"
-            className="ml-2 mr-8 border-[1px] border-gray-100 p-2 w-52 rounded print:hidden"
+            className="border-[1px] border-gray-100 p-2 w-full lg:w-52 rounded print:hidden"
             onChange={handleTurnSubGrupo}
           >
             <option value={0}>Todos</option>
@@ -88,22 +92,23 @@ export default function Active() {
           </select>
 
           <button
+            type='button'
             onClick={handleAddNew}
-            className="print:hidden p-2 w-32 h-10 bg-green-600 text-center text-white font-semibold hover:bg-green-500 transition-all rounded"
+            className="print:hidden p-2 w-full lg:w-52 h-10 bg-green-600 text-center text-white font-semibold hover:bg-green-500 transition-all rounded"
           >
             + Adicionar
           </button>
 
           <Link
             href="/movimentacoes/ativos"
-            className="print:hidden p-2 mx-4 w-32 h-10 bg-blue-600 text-center text-white font-semibold hover:bg-blue-500 transition-all rounded"
+            className="print:hidden p-2 w-full lg:w-52 h-10 bg-blue-600 text-center text-white font-semibold hover:bg-blue-500 transition-all rounded"
           >
             Movimentações
           </Link>
 
           <button
             onClick={() => self.print()}
-            className="print:hidden ml-2 pt-2 pb-2 pl-3 w-10 h-10 bg-gray-600 text-center text-white font-semibold hover:bg-gray-500 transition-all rounded"
+            className="print:hidden pt-2 pb-2 pl-3 w-10 h-10 bg-gray-600 text-center text-white font-semibold hover:bg-gray-500 transition-all rounded"
           >
             <FiPrinter />
           </button>
@@ -111,8 +116,13 @@ export default function Active() {
       </div>
       <ListActives pcentrocusto={codCentroCusto} psubgrupo={codSubGrupo} />
 
-      <Modal style={customStylesModal} ariaHideApp={false} isOpen={isOpen}>
-        <Adicionar setIsClose={setIsOpen} />
+      <Modal 
+        isOpen={isOpenActive}
+        ariaHideApp={false} 
+        onRequestClose={closeModal}
+        style={customStylesModal}
+      >
+        <Adicionar setIsCloseActive={setIsOpenActive} />
       </Modal>
     </div>
   )

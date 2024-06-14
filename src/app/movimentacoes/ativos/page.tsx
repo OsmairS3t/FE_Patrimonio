@@ -8,6 +8,8 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { api } from '@/lib/axios'
 import { IActives, ICostCenter } from '@/utils/interface'
 import { ZeroLeft } from '@/utils/function'
+import ReactModal from 'react-modal'
+import Notes from '@/components/notes'
 
 const schema = z.object({
   codigoAtivo: z
@@ -20,6 +22,7 @@ type SearchProps = {
 }
 
 export default function MovAtivos() {
+  const [isNoteOpen, setIsNoteOpen] = useState(false)
   const [codigo, setCodigo] = useState('')
   const [centroCustos, setCentroCustos] = useState<ICostCenter[]>([])
   const [listStatus, setListStatus] = useState<string[]>([
@@ -64,6 +67,14 @@ export default function MovAtivos() {
     const codigoFormatado = ZeroLeft(data.codigoAtivo, 6)
     setCodigo(codigoFormatado)
     reset()
+  }
+
+  function handleOpenNote() {
+    setIsNoteOpen(true)
+  }
+
+  function handleCloseNote() {
+    setIsNoteOpen(false)
   }
 
   useEffect(() => {
@@ -177,13 +188,26 @@ export default function MovAtivos() {
             </tr>
           </table>
         }
-        <button
-          onClick={() => handleUpdate(Number(search?.id))}
-          className="mt-4 p-2 rounded text-white w-52 bg-green-600 hover:bg-green-500"
-        >
-          Alterar
-        </button>
+        <div className='flex flex-col lg:flex-row lg:gap-2'>
+          <button
+            onClick={() => handleUpdate(Number(search?.id))}
+            className="mt-4 p-2 rounded text-white w-full lg:w-52 bg-green-600 hover:bg-green-500"
+          >
+            Alterar
+          </button>
+
+          <button
+            onClick={handleOpenNote}
+            className="mt-4 p-2 rounded text-white w-full lg:w-52 bg-yellow-600 hover:bg-yellow-500"
+          >
+            Anotações
+          </button>
+        </div>
       </div>
+
+      <ReactModal isOpen={isNoteOpen} onRequestClose={handleCloseNote}>
+        <Notes handleClose={handleCloseNote} />
+      </ReactModal>
     </div>
   )
 }

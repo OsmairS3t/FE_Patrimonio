@@ -21,10 +21,10 @@ const activeSchema = z.object({
 })
 
 interface Props {
-  setIsClose: (isOpen: boolean) => void
+  setIsCloseActive: (isOpen: boolean) => void
 }
 
-export function Adicionar({ setIsClose }: Props) {
+export function Adicionar({ setIsCloseActive }: Props) {
   // const [subGrupo, setSubGrupo] = useState(0)
   // const [cCusto, setCCusto] = useState(0)
   const [subGrupos, setSubGrupos] = useState<ISubGroups[]>([])
@@ -40,8 +40,8 @@ export function Adicionar({ setIsClose }: Props) {
   })
 
   function handleClose() {
-    // setIsClose(false)
-    // reset()
+    setIsCloseActive(false)
+    reset()
   }
 
   async function handleSubmitActive(data: IActive) {
@@ -65,7 +65,7 @@ export function Adicionar({ setIsClose }: Props) {
     // document.getElementById('codigo')?.focus()
     alert('Ativo incluído com sucesso!')
     reset()
-    setIsClose(false)
+    setIsCloseActive(false)
   }
 
   async function LoadSubGroup() {
@@ -97,6 +97,7 @@ export function Adicionar({ setIsClose }: Props) {
       <div className="flex flex-row justify-between">
         <h2 className="text-2xl font-semibold">Incluir Ativos</h2>
         <button
+          type='button'
           onClick={handleClose}
           className="px-2 bg-red-500 hover:bg-red-400 text-xl text-white rounded"
         >
