@@ -106,6 +106,13 @@ export default function Active() {
             Movimentações
           </Link>
 
+          <Link
+            href="/movimentacoes/conferencia"
+            className="print:hidden p-2 w-full lg:w-52 h-10 bg-yellow-600 text-center text-white font-semibold hover:bg-blue-500 transition-all rounded"
+          >
+            Conferencia
+          </Link>
+
           <button
             onClick={() => self.print()}
             className="print:hidden pt-2 pb-2 pl-3 w-10 h-10 bg-gray-600 text-center text-white font-semibold hover:bg-gray-500 transition-all rounded"

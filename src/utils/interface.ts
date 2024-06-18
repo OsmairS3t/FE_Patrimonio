@@ -22,6 +22,7 @@ export interface IActive {
   codsubgrupo: number
   codcentrocusto: number
   codmarca: number
+  encontrado: boolean
 }
 
 export interface ICostCenter {
