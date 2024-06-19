@@ -13,7 +13,7 @@ export default function ConfAtivos() {
 
   async function handleTurnCentroCusto(id:string) {
     setCodCentroCusto(id)
-    const response = await api.get(`ativos/list/${id}/0`)
+    const response = await api.get(`ativos/listactive/${id}`)
     if(response.data) {
       setAtivos(response.data)
     }
@@ -25,7 +25,6 @@ export default function ConfAtivos() {
   }
 
   async function updateActive(id: string, isFound: boolean) {
-    // alert(`Atualizado ${id}`)
     const encontradoStr = !isFound
     const data = {
       encontrado: String(encontradoStr),
