@@ -43,9 +43,9 @@ export default function ConfAtivos() {
 
   return (
     <div>
-      <div className='flex flex-row justify-between items-center mb-4'>
+      <div className='flex flex-row justify-start gap-4 items-center mb-4'>
+        <Link href="/ativos"><FiArrowLeft size={24} /></Link>
         <h1 className="font-bold text-xl">Conferencia de Ativos</h1>
-        <Link href="/ativos"><FiArrowLeft size={28} /></Link>
       </div>
 
       <select

@@ -1,7 +1,7 @@
 'use client'
 
 import { useEffect, useState } from 'react'
-import { FiSearch } from 'react-icons/fi'
+import { FiArrowLeft, FiSearch } from 'react-icons/fi'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 import { zodResolver } from '@hookform/resolvers/zod'
@@ -10,6 +10,7 @@ import { IActives, ICostCenter } from '@/utils/interface'
 import { ZeroLeft } from '@/utils/function'
 import ReactModal from 'react-modal'
 import Notes from '@/components/notes'
+import Link from 'next/link'
 
 const schema = z.object({
   codigoAtivo: z
@@ -84,7 +85,10 @@ export default function MovAtivos() {
 
   return (
     <div>
-      <h1 className="font-bold text-xl mb-4">Movimentação de Ativos</h1>
+      <div className='flex flex-row justify-start gap-4 items-center mb-4'>
+        <Link href="/ativos"><FiArrowLeft size={24} /></Link>
+        <h1 className="font-bold text-xl">Movimentação de Ativos</h1>
+      </div>
 
       <form
         onSubmit={handleSubmit(handleSearch)}
