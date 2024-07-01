@@ -84,7 +84,7 @@ export function Menu() {
           <li>
             <Link
               onClick={toglleMenu}
-              href="/"
+              href="/relatorios"
               className="px-4 py-2 font-semibold hover:text-white transition-all ease-in duration-300"
             >
               Relatórios
