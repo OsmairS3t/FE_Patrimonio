@@ -2,32 +2,23 @@
 import { api } from "@/lib/axios";
 import { ICostCenter } from "@/utils/interface";
 import { useEffect, useState } from "react"
-import { Chart } from "react-google-charts";
+import { Bar, VictoryBar, VictoryChart, VictoryLabel, VictoryLegend, VictoryTheme } from "victory";
 
 interface QtdProps {
   ativo: string;
   qtde: string;
 }
-type DataArray = [string, string | number][];
+
+interface LegProps {
+  name: string
+}
 
 export default function Home() {
   const [idCostCenter, setIdCostCenter] = useState('0')
   const [centroCustos, setCentroCustos] = useState<ICostCenter[]>([])
-  // let dataChart:[string, string|number][] = [["Centro de custo", "Quantidade"]]
-  let dataChart: DataArray = [["Centro de custo", "Quantidade"]];
-  let dataLast:string
-
-  const data = [
-    ["Task", "Hours per Day"],
-    ["CADEIRA PLASTICA S BRAÇO", 108], 
-    ["ARMARIO DE AÇO", 10], 
-    ["GELADEIRA SUPER LUXO", 1], 
-    ["ROÇADEIRA", 1], 
-    ["CADEIRA PLASTICA COM APOIO", 20], 
-    ["LAVADORA INDUSTRIAL ALTA VAZAO EL4000V2", 1], 
-    ["FREEZER", 1] 
-  ];
-
+  const [dataChartVictory, setDataChartVictory] = useState<QtdProps[]>([])
+  let ArrLabels = [{name: ''}]
+  
   async function listCentroCusto() {
     const response = await api.get('centrocusto')
     setCentroCustos(response.data)
@@ -36,15 +27,15 @@ export default function Home() {
   async function LoadActives(id: string) {
     const response = await api.get(`ativos/rel/${id}`)
     let objeto:QtdProps[] = response.data
-    objeto.map((obj) => {
-      dataChart.push([obj.ativo, Number(obj.qtde)])
+    objeto.map(item => {
+      ArrLabels.push({name: item.ativo})
     })
+    setDataChartVictory(objeto)
   }
 
   useEffect(() => {
     listCentroCusto()
     LoadActives(idCostCenter)
-    console.log(dataLast)
   },[idCostCenter])
 
   return (
@@ -63,26 +54,40 @@ export default function Home() {
           ))}
         </select>
       </div>
-      <div>
-        <Chart
-          chartType="PieChart"
-          data={dataChart}
-          options={{is3D:true}}
-          width={"100%"}
-          height={"400px"}
-        />
-        
-        {/* <DonutChart
-          data={dataChart}
-          noDataText="Sem lista de ativos, selecione um acima"
-          className="h-60 mt-4"
-          index="name"
-          showAnimation={true}
-          animationDuration={5}
-          variant="donut"
-          colors={['#64748b', '#756254', '#ef4444', '#f97316', '#eab308', '#84cc16', '#06b6d4']}
-          onValueChange={(v) => console.log(v)}
-        /> */}
+
+      <div className="w-full h-[600px]">
+        <VictoryChart 
+          theme={VictoryTheme.material} 
+          height={400}
+          title="Quantidade por centro de custo"
+        >
+          <VictoryBar horizontal
+            data={dataChartVictory}
+            x="ativo" y="qtde"
+            labels={({ data, index }) => data[index].qtde}
+            labelComponent={
+              <VictoryLabel
+                inline
+                style={[
+                  { 
+                    fontFamily: 'Roboto',
+                    fontSize: 10,
+                    fill: "black" 
+                  },
+                ]}
+              />
+            }
+            style={{
+              data: {
+                fill: "#055741", 
+              }
+            }}
+            animate={{
+              duration: 2000,
+              onLoad: { duration: 1000 }
+            }}
+          />
+        </VictoryChart>
       </div>
     </section>
   )
