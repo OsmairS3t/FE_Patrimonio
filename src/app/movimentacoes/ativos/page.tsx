@@ -98,7 +98,8 @@ export default function MovAtivos() {
         <input
           className="border-[1px] w-28 border-gray-300 pr-2 rounded p-2 bg-gray-100"
           autoFocus={true}
-          type="text"
+          type="number"
+          pattern="[0-9]*"
           id="codigoAtivo"
           placeholder="0000001"
           {...register('codigoAtivo')}
