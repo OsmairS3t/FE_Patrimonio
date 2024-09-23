@@ -48,6 +48,7 @@ export interface IActives {
   centrocusto: string
   codmarca: number
   marca: string
+  encontrado: boolean
 }
 
 export interface INote {

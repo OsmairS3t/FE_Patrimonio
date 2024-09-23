@@ -24,6 +24,8 @@ type SearchProps = {
 
 export default function MovAtivos() {
   const [isNoteOpen, setIsNoteOpen] = useState(false)
+  const [found, setFound] = useState(false)
+  const [textFound, setTextFound] = useState('Não')
   const [codigo, setCodigo] = useState('')
   const [centroCustos, setCentroCustos] = useState<ICostCenter[]>([])
   const [listStatus, setListStatus] = useState<string[]>([
@@ -48,16 +50,32 @@ export default function MovAtivos() {
 
   async function loadSeach(codigo: string) {
     const response = await api.get(`ativos/${codigo}`)
+    const fd = document.getElementById('encontrado') as HTMLInputElement
+    if(response.data.encontrado === true) {
+      setTextFound('Sim')
+      fd.checked = true
+    } else {
+      setTextFound('Não')
+      fd.checked = false
+    }
     setSeach(response.data)
+  }
+
+  function handleTurnFound() {
+    const fd = document.getElementById('encontrado') as HTMLInputElement
+    fd.checked ? setTextFound('Sim') : setTextFound('Não')
+    setFound(!found)
   }
 
   async function handleUpdate(id: number) {
     const st = document.getElementById('status') as HTMLInputElement
     const cc = document.getElementById('centrocusto') as HTMLInputElement
+    const fd = document.getElementById('encontrado') as HTMLInputElement
     const data = {
       id,
       status: st.value,
       codcentrocusto: Number(cc.value),
+      encontrado: fd.checked
     }
     await api.put('ativos', data)
     // alert('Ativo atualizado com sucesso!' + JSON.stringify(data))
@@ -155,14 +173,6 @@ export default function MovAtivos() {
               <td className="pr-2 font-semibold">DESCRIÇÃO:</td>
               <td className="pl-2">
                 {search?.descricao}
-                {/* <br />
-                <input
-                  className="p-2 w-full md:w-96 border-[1px] border-gray-300 pr-2 rounded bg-gray-100"
-                  type="text"
-                  id="descricao"
-                  placeholder="Descrição"
-                  {...register('descricao')}
-                /> */}
               </td>
             </tr>
             <tr>
@@ -189,6 +199,18 @@ export default function MovAtivos() {
                     }
                   })}
                 </select>
+              </td>
+            </tr>
+            <tr>
+              <td className='pr-2 font-semibold'>ENCONTRADO NO LOCAL?</td>
+              <td className='pl-2'>
+                <input 
+                  type='checkbox' 
+                  id='encontrado' 
+                  name='encontrado' 
+                  onChange={handleTurnFound} 
+                />
+                <label htmlFor='encontrado' className='pl-2'>{textFound}</label>
               </td>
             </tr>
           </table>

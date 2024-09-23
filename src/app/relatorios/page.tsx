@@ -59,7 +59,7 @@ export default function Relatorios() {
     <div>
       <h2>Relatorios</h2>
       <div className='my-2 w-1/4 p-6 rounded-lg border-[1px] border-slate-100 hover:border-[1px] hover:border-slate-300 hover:shadow-xl'>
-        <h2 className='font-semibold mb-2'>Por Centro de Custo:</h2>
+        <h2 className='font-semibold mb-2'>Ativos Por Centro de Custo:</h2>
         <form>
           <div className='flex flex-row flex-wrap gap-2'>
             <select id="centrocusto" name="centrocusto" className="p-2 w-full md:w-96 rounded border-[1px] border-gray-300 bg-gray-200"> 
@@ -69,6 +69,23 @@ export default function Relatorios() {
               ))}
             </select>
 
+            <select id='tipo' name='tipo' className="p-2 w-full md:w-96 rounded border-[1px] border-gray-300 bg-gray-200">
+              <option value={0}>Tipo</option>
+              <option value={1}>Analitico</option>
+              <option value={2}>Sintético</option>
+            </select>
+
+            <button type='submit' onClick={handleListForCC} className='w-40 p-2 bg-blue-500 hover:bg-blue-600 transition:all font-semibold text-white rounded'>
+                Listar
+            </button>
+          </div>
+        </form>
+      </div>
+
+      <div className='my-2 w-1/4 p-6 rounded-lg border-[1px] border-slate-100 hover:border-[1px] hover:border-slate-300 hover:shadow-xl'>
+        <h2 className='font-semibold mb-2'>Ativos encontrados na conferência:</h2>
+        <form>
+          <div className='flex flex-row flex-wrap gap-2'>
             <select id='tipo' name='tipo' className="p-2 w-full md:w-96 rounded border-[1px] border-gray-300 bg-gray-200">
               <option value={0}>Tipo</option>
               <option value={1}>Analitico</option>
